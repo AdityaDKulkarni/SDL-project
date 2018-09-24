@@ -1,30 +1,30 @@
+//package ui;
 package Design;
-
 import javax.swing.*;
+//import assets.*;
+//import sql.SQLHelper;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 
-public class page1 implements ActionListener {
+public class page1 {
 	
 	JFrame frame; 
 	JPanel panel;  
-	JLabel labelImg1,labelImg2,labelImg3,labelImg4,labelImg5,labelImg6,labelImg7,labelImg8,lblGallery,lblBday,lblDance,lblWedding;
-    JButton btnManage,btnView;
+	JLabel labelImg1,labelImg2,labelImg3,labelImg4,labelImg5,labelImg6,labelImg7,labelImg8,lblBday,lblDance,lblWedding;
+    JButton btnManage;
 	
-	page1()
-	{
-	    frame=new JFrame("Stage One");
+	page1(){
+	    frame=new JFrame("Gallery");
 		makeFrameFullSize();
 		panel=(JPanel)frame.getContentPane();
 		panel.setLayout(null);
-		
-		JLabel lblGallery=new JLabel("Our Work Gallery");
-		lblGallery.setBounds(500,15,150,15);
-		lblGallery.setFont(new Font("Arial",Font.BOLD,14));
 		
 		JLabel labelImg2=new JLabel("");
 		Image img2=new ImageIcon(this.getClass().getResource("/img2.jpg")).getImage();
@@ -61,7 +61,7 @@ public class page1 implements ActionListener {
 		labelImg7.setBounds(850,250,300,225);	
 		
 		JLabel lblWedding=new JLabel("Birthday Celebration");
-		lblWedding.setBounds(850,500,150,15);
+		lblWedding.setBounds(850,500,200,15);
 		lblWedding.setFont(new Font("Arial",Font.BOLD,14));
 		
 		
@@ -71,7 +71,7 @@ public class page1 implements ActionListener {
 		labelImg8.setBounds(450,250,300,225);	
 		
 		JLabel lblDance=new JLabel("Classical Events");
-		lblDance.setBounds(450,500,120,15);
+		lblDance.setBounds(450,500,150,15);
 		lblDance.setFont(new Font("Arial",Font.BOLD,14));
 		
 		JButton btnManage = new JButton("Manage my Event");
@@ -91,33 +91,34 @@ public class page1 implements ActionListener {
 		btnView.setBackground(new Color(30,180,255));
 		btnView.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnView.setMnemonic('V');
-		btnView.addActionListener(this);
+	//	btnView.addActionListener(this);
+		
+		btnManage.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Pg2 pg2 = new Pg2();
+				frame.dispose();
+				//SQLHelper.connect();
+			}
+		});
 		panel.setBackground(new Color(153,255,255));
 		
-		panel.add(btnView);
-		panel.add(lblGallery);
 		panel.add(labelImg2);
 		panel.add(labelImg3);
 		panel.add(labelImg4);
 		panel.add(labelImg5);
 		panel.add(labelImg6);
 		panel.add(labelImg7);
-		panel.add(labelImg8);
+		panel.add(labelImg8); 
 		panel.add(lblBday);
 		panel.add(lblDance);
 		panel.add(lblWedding);
 		panel.add(btnManage);
+		panel.add(btnView);
 		
 		frame.setVisible(true);
 		
-		
-	}
-	
-	public void actionPerformed(ActionEvent ae)
-	{
-			new displaypg();
-			frame.dispose();		
-			
 	}
 	
 	private void makeFrameFullSize(){
